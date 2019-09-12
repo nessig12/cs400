@@ -5,6 +5,8 @@
 //pass the string ‘supercalifragilisticexpialidocious’ and a lambda function that returns an array containing
 // fragments of the input string broken on the character ‘c’
 
+const which = string => split_string(string);
+
 const split_string = string => string.split('c');
 
 
@@ -17,6 +19,7 @@ const replace = string => {
 }
 
 
+console.log(`${which('supercalifragilisticexpialidocious', replace)}`)
 
-console.log(`String broken up: ${split_string('supercalifragilisticexpialidocious')}`);
+
 replace('supercalifragilisticexpialidocious');
