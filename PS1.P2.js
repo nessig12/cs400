@@ -6,7 +6,6 @@
 // This function should
 // Determine the operator (+, *, -, or /) embedded in the string
 // Return a function to implement the input operator that returns the result
-const expression = '4+2';
 const evaluate = expression => {
     switch (expression) {
         case '+':
@@ -15,21 +14,13 @@ const evaluate = expression => {
             return (left, right) => left * right;
         case '%':
             return (left, right) => left % right;
+        case '-':
+            return (left, right) => left - right;
+        case '/':
+            return (left, right) => left / right;
     }
 }
-let operator = evaluate(expression[1]);
-console.log(typeof(expression[0]))
-console.log(expression[1])
-console.log(expression[2])
-console.log(Integer.valueOf(operator(expression[0]), expression[2]));
-//console.log(`${expression} = ${operator(expression)}`)
 
-const getOperation = operator => {
-    switch (operator) {
-        case '+':
-            return (left, right) => left + right;
-            break;
-    }
-}
-let mathFunction = getOperation('+');
-console.log(mathFunction(30,12));
+const expression = '8%3';
+let operator = evaluate(expression[1]);
+console.log(`${expression} = ${operator(parseInt(expression[0],10), parseInt(expression[2],10))}`)
