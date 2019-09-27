@@ -7,25 +7,33 @@
 //     Use the generators to print out the first 6 even Fibonacci numbers.
 
 function* fibonacci() {
-    [a, b] = [0, 1]
-    while (true) {
-        yield a;
-        [a, b] = [b, a + b]
+    var num1 = 0;
+    var num2 = 1;
+    while (true){
+        var current = num1;
+        num1 = num2;
+        num2 = num1 + current;
+        var result  = yield current;
     }
 }
 function* is_even(fib) {
-    count = 0;
+    var count = 0;
     while (count < 6){
-        num = fib.next().value;
-        console.log(fib.next().value);
-        if (num %2 == 0){
+        var num = fib.next().value;
+        if (num % 2 == 0){
             count = count + 1;
-            console.log(num);
+            var result = yield num;
         }
+    }
+}
+
+function print(result) {
+    for (var i = 0; i < 6; i++) {
+        console.log(result.next().value);
     }
 
 }
-var fib = fibonacci();
-console.log(fib);
 
-var result = is_even(fib);
+var result = is_even(fibonacci());
+print(result);
+
