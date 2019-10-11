@@ -1,13 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const request = require("request");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('ps3', { title: 'CS 400 Assignment' });
-});
-
-router.get('/ps3',function (req, res, next) {
+router.get('/',function (req, res, next) {
     const options = {
         method: 'GET',
         url: 'http://apilayer.net/api/live',
