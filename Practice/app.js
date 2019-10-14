@@ -1,9 +1,9 @@
 const createError = require('http-errors');
 const express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var  a = require('async');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const  a = require('async');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

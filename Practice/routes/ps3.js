@@ -5,12 +5,7 @@ const request = require("request");
 router.get('/',function (req, res, next) {
     const options = {
         method: 'GET',
-        url: 'http://apilayer.net/api/live',
-        qs:
-            {
-                access_key:'707d4d2111a1976c7c4bbd767a9bf3a6',
-                currencies: 'EUR, %20GBP, JPY',
-                format: '0'},
+        url: ' http://www.omdbapi.com/?i=tt3896198&apikey=ae9419f7', //'http://www.omdbapi.com/?t=mean+girls',
     };
     request(options, function(error, response, body) {
         console.log(`Response: ${response}`);
@@ -22,11 +17,17 @@ router.get('/',function (req, res, next) {
 
         res.render('ps3',
             {
-                eur: result.quotes.USDEUR,
-                source: result.source
+                title: "CS 400 Assignment",
+                name: result.Title,
+                release: result.Released,
             }
         )
     });
+});
+
+router.post('/',function (req, res, next) {
+    let stuff = req.body;
+    res.render('ps3', stuff );
 });
 
 module.exports = router;
