@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 #{title}
+  p  For this assignment, we are supposed to build a Node/Express application that uses a GET method to retrieve date from an external API. We are then supposed to store the response in a database, to mimic a cache.
+  p On every following call, the data should be taken from the database rather than from the API.
+  br
+  p Who is your favorite Harry potter character?
+
+  p #{name}
+  p #{house}
+
+  form(action='/ps6/HarryPotter', method='GET')
+    select(name='character_name')
+      option(value='Ron Weasely' selected=) Ron Weasely
+      option(value='Harry Potter' selected=) Harry Potter
+    input(type='submit', value='Submit')
+
+
+
+
