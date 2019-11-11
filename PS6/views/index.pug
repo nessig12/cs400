@@ -7,14 +7,10 @@ block content
   br
   p Who is your favorite Harry potter character?
 
-  p #{name}
-  p #{house}
-
-  form(action='/ps6/HarryPotter', method='GET')
-    select(name='character_name')
-      option(value='Ron Weasely' selected=) Ron Weasely
-      option(value='Harry Potter' selected=) Harry Potter
-    input(type='submit', value='Submit')
+  p Name: #{name}
+     // if #{name} != n/a
+  p House: #{house}
+     // if #{house} != n/a
 
 
 

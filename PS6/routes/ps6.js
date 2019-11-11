@@ -12,16 +12,25 @@ db.connect((err,client) => {
     }
 });
 
-router.route('/:name')
-    .get(function (req, res, next) {
+router.route('/')
+    .post(function (req, res, next) {
         console.log("im after the form submitted");
-        const character_n = 'Harry Potter'; //character_name;
+
+        const character_n = 'HarryPotter'; //req.params.name;
+
+        let num;
+        if (character_n == 'HarryPotter'){
+            num = 109;
+        }
+        else {// ron weasely
+            num = 150;
+        }
+
         const options = {
             method: 'GET',
             url: 'https://www.potterapi.com/v1/characters',
             qs: {
                 key: '$2a$10$8iXOkF8dl5qOG57eGMO5FO9EDcMeU1Xi7G3ybFVipqnhzUD9Xs0v6',
-                name: character_n,
             }
         };
         request(options, function (error, response, body) {
@@ -32,11 +41,13 @@ router.route('/:name')
 
             const result = JSON.parse(body);
 
+            console.log(`result: ${result}`);
+
             res.render('index',
                 {
                     title: "CS400 Assignment 4 ",
-                    name: result.name,
-                    house: result.house,
+                    name: result[num].name,
+                    house: result[num].house,
                 }
             )
         })
@@ -45,7 +56,7 @@ router.route('/:name')
 router.route('/')
     .get(function (req, res, next) {
         console.log("im before the form submitted");
-        res.render('index',
+        res.render('form',
             {
                 title: "CS400 Assignment 4 ",
             }
