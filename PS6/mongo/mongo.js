@@ -7,7 +7,7 @@ module.exports = {
 
     connect: function( callback ) {
         mongoClient.connect( mongoURL,  { useNewUrlParser: true }, function( err, client ) {
-            _db  = client.db('test_db');
+            _db  = client.db('cs400');
             return callback( err );
         } );
     },

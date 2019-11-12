@@ -5,12 +5,13 @@ block content
     p  For this assignment, we are supposed to build a Node/Express application that uses a GET method to retrieve date from an external API. We are then supposed to store the response in a database, to mimic a cache.
     p On every following call, the data should be taken from the database rather than from the API.
     br
-    p Who is your favorite Harry potter character?
+    p Who is your favorite Harry potter character? Click below to find out which house they are in!
 
 
     form(action='/ps6', method='POST')
         select(name='character')
-            option(value='RonWeasely' selected=) Ron Weasely
-            option(value='HarryPotter' selected=) Harry Potter
+            option(value='Ron Weasley' selected=) Ron Weasely
+            option(value='Harry Potter' selected=) Harry Potter
+            option(value='Draco Malfoy' selected=) Draco Malfoy
         input(type='submit', value='Submit')
 
