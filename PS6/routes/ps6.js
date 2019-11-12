@@ -14,10 +14,12 @@ db.connect((err,client) => {
 
 router.route('/')
     .post(function (req, res, next) {
-        console.log("im after the form submitted");
-
+        //console.log("im after the form submitted");
         const character_n = 'HarryPotter'; //req.params.name;
 
+        //which character did the person choose?
+        // -- fix this to be get the result from the form, to get only that response from the api
+        //rather than all of the characters and index
         let num;
         if (character_n == 'HarryPotter'){
             num = 109;
@@ -26,13 +28,34 @@ router.route('/')
             num = 150;
         }
 
-        const options = {
-            method: 'GET',
-            url: 'https://www.potterapi.com/v1/characters',
-            qs: {
-                key: '$2a$10$8iXOkF8dl5qOG57eGMO5FO9EDcMeU1Xi7G3ybFVipqnhzUD9Xs0v6',
+
+        //Database cache or call API???
+
+        //connect to db
+        let mongo = db.getDB();
+
+        let in_database = false;
+        //check if term is in database !!! either ronweasely or harrypotter
+
+        if (in_database){
+            const options = {
+               // mongo.connection('hpcharacters').find({name:req.params.name})
             }
-        };
+
+        }
+        else { // info is not cached get it from API!!!
+            const options = {
+                method: 'GET',
+                url: 'https://www.potterapi.com/v1/characters',
+                qs: {
+                    key: '$2a$10$8iXOkF8dl5qOG57eGMO5FO9EDcMeU1Xi7G3ybFVipqnhzUD9Xs0v6',
+                }
+            };
+            mongo.collection('hpcharacters').insertOne("HarryPotter", function (err,r){
+                res.send('success');
+            });
+        }
+
         request(options, function (error, response, body) {
             console.log(`Response: ${response}`);
             if (error) throw new Error(error);
@@ -48,6 +71,7 @@ router.route('/')
                     title: "CS400 Assignment 4 ",
                     name: result[num].name,
                     house: result[num].house,
+                    school: result[num].school,
                 }
             )
         })

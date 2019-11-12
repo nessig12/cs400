@@ -13,3 +13,4 @@ module.exports = {
     },
     getDB: () => { return _db; }
 };
+
