@@ -1,0 +1,16 @@
+<div>
+  <p> Result:</p>
+</div>
+
+<div *ngIf="character">
+  <h3>Details for {{character.name}}</h3>
+  <input type="text" [(ngModel)]="character.house"><br/>
+
+  <ul>
+  <li *ngFor="let char of hpcharacters">{{char.name}} </li>
+  </ul>
+
+</div>
+
+
+
